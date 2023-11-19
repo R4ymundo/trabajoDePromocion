@@ -8,7 +8,7 @@ include_once("wordix.php");
 /**************************************/
 
 /* Apellido, Nombre. Legajo. Carrera. mail. Usuario Github */
-/* ****COMPLETAR***** */
+/* Perez Santiago Aaron. FAI-4977. Tecnicatura Universitaria de Desarrollo Web. santiaaronp04@gmail.com. Sanluki04/
 
 
 /**************************************/
