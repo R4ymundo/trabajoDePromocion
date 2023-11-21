@@ -7,8 +7,8 @@ include_once("wordix.php");
 /***** DATOS DE LOS INTEGRANTES *******/
 /**************************************/
 
-/* Apellido, Nombre. Legajo. Carrera. mail. Usuario Github */
-/* ****COMPLETAR***** */
+/* Carrera, Bruno Abel. Legajo: FAI-4912. Carrera: Tecnicatura Universitaria en Desarrollo Web. Usuario Github: R4ymundo*/
+/* Perez, Aaron. Legajo: FAI-4977. Carrera: Tecnicatura Universitaria en Desarrollo Web. Usuario Github: Sanluki04*/
 
 
 /**************************************/
