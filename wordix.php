@@ -26,13 +26,15 @@ const ESTADO_LETRA_PERTENECE = "pertenece";
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
 
-/**
- *  ****COMPLETAR*****
+/** FUNCION QUE SOLICITA UN NUMERO PARA EVALUAR SI EL MISMO ESTA DENTRO DE LOS PARAMETROS INGRESADOS Y RETORNA DICHO NUMERO
+ * @param INT $min
+ * @param INT $max
+ * @return INT
  */
 function solicitarNumeroEntre($min, $max)
 {
     //int $numero
-
+    echo "Ingrese un número: ";
     $numero = trim(fgets(STDIN));
 
     if (is_numeric($numero)) { //determina si un string es un número. puede ser float como entero.
@@ -119,8 +121,8 @@ function escribirSegunEstado($texto, $estado)
     }
 }
 
-/**
- * ****COMPLETAR*****
+/** FUNCION QUE DA UN MENSAJE DE BIENVENIDA
+ * @param string $usuario
  */
 function escribirMensajeBienvenida($usuario)
 {
@@ -132,8 +134,9 @@ function escribirMensajeBienvenida($usuario)
 }
 
 
-/**
- * ****COMPLETAR*****
+/** FUNCION QUE VERIFICA QUE LA CADENA DE CARACTERES INGRESADA TENGA SOLAMENTE CARACTERES ALFABETICOS
+ * @param string $cadena
+ * @return boolean
  */
 function esPalabra($cadena)
 {
@@ -148,8 +151,8 @@ function esPalabra($cadena)
     return $esLetra;
 }
 
-/**
- *  ****COMPLETAR*****
+/**FUNCION QUE VERIFICA QUE LA CADENA DE CARACTERES INGRESADA TENGA CINCO CARACTERES Y SEAN CARACTERES ALFABETICOS
+ * @return string
  */
 function leerPalabra5Letras()
 {
@@ -159,7 +162,7 @@ function leerPalabra5Letras()
     $palabra  = strtoupper($palabra);
 
     while ((strlen($palabra) != 5) || !esPalabra($palabra)) {
-        echo "Debe ingresar una palabra de 5 letras:";
+        echo "Debe ingresar una palabra de 5 letras: ";
         $palabra = strtoupper(trim(fgets(STDIN)));
     }
     return $palabra;
@@ -221,7 +224,7 @@ function escribirTeclado($teclado)
 function imprimirIntentosWordix($estructuraIntentosWordix)
 {
     $cantIntentosRealizados = count($estructuraIntentosWordix);
-    //$cantIntentosFaltantes = CANT_INTENTOS - $cantIntentosRealizados;
+    // INT $cantIntentosFaltantes = CANT_INTENTOS - $cantIntentosRealizados;
 
     for ($i = 0; $i < $cantIntentosRealizados; $i++) {
         $estructuraIntento = $estructuraIntentosWordix[$i];
@@ -243,9 +246,7 @@ function imprimirIntentosWordix($estructuraIntentosWordix)
 }
 
 /**
- * Dada la palabra wordix a adivinar, la estructura para almacenar la información del intento 
- * y la palabra que intenta adivinar la palabra wordix.
- * devuelve la estructura de intentos Wordix modificada con el intento.
+ * Dada la palabra wordix a adivinar, la estructura para almacenar la información del intento  y la palabra que intenta adivinar la palabra wordix. devuelve la estructura de intentos Wordix modificada con el intento.
  * @param string $palabraWordix
  * @param array $estruturaIntentosWordix
  * @param string $palabraIntento
@@ -253,6 +254,10 @@ function imprimirIntentosWordix($estructuraIntentosWordix)
  */
 function analizarPalabraIntento($palabraWordix, $estruturaIntentosWordix, $palabraIntento)
 {
+    //INT $cantCaracteres, $i, $letraIntento
+    //ARRAY $estructuraPalabraIntento
+    //BOOOLEAN $posicion
+    //STRING $estado
     $cantCaracteres = strlen($palabraIntento);
     $estructuraPalabraIntento = []; /*almacena cada letra de la palabra intento con su estado */
     for ($i = 0; $i < $cantCaracteres; $i++) {
@@ -327,8 +332,8 @@ function esIntentoGanado($estructuraPalabraIntento)
     return $ganado;
 }
 
-/**
- * ****COMPLETAR***** documentación de la intefaz
+/** FUNCION PARA OBTENER PUNTAJE
+ * 
  */
 function obtenerPuntajeWordix()  /* ****COMPLETAR***** parámetros formales necesarios */
 {

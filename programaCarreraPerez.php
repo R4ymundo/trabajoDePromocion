@@ -8,7 +8,7 @@ include_once("wordix.php");
 /**************************************/
 
 /* Apellido, Nombre. Legajo. Carrera. mail. Usuario Github */
-/* Perez Santiago Aaron. FAI-4977. Tecnicatura Universitaria de Desarrollo Web. santiaaronp04@gmail.com. Sanluki04/
+/* ****COMPLETAR***** */
 
 
 /**************************************/
@@ -24,8 +24,8 @@ function cargarColeccionPalabras()
     $coleccionPalabras = [
         "MUJER", "QUESO", "FUEGO", "CASAS", "RASGO",
         "GATOS", "GOTAS", "HUEVO", "TINTO", "NAVES",
-        "VERDE", "MELON", "YUYOS", "PIANO", "PISOS"
-        /* Agregar 5 palabras más */
+        "VERDE", "MELON", "YUYOS", "PIANO", "PISOS",
+        "FERIA", "HIELO", "CIELO", "RATON", "VARON"
     ];
 
     return ($coleccionPalabras);
