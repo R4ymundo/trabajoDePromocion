@@ -75,9 +75,22 @@ function seleccionarOpcion(){
  * @return INT 
  */
 function pidePalabra(){
-    echo "Ingrese una palabra de 5 letras";
+    echo "Ingrese una palabra de 5 letras \n";
     $palabra=trim(fgets(STDIN));
     return $palabra;
+}
+
+//Una función que solicite al usuario un número entre un rango de valores. Si el número ingresado por el
+//usuario no es válido, la función se encarga de volver a pedirlo. La función retorna un número válido.
+function pideNumerro(){
+    echo "Ingrese un numero del 1 al 10 \n";
+    $numero=trim(fgets(STDIN));
+    while($numero<1 || $numero>10){
+        echo "Error: Numero Invalido
+        Ingrese un numero del 1 al 10 \n";
+        $numero=trim(fgets(STDIN));
+    }
+    return $numero; 
 }
 
 /**************************************/
