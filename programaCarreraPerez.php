@@ -50,7 +50,7 @@ function cargarPartidas(){
 }
 
 /**
- * Obtiene una colección de palabras
+ * menu de opciones
  * @return INT 
  */
 function seleccionarOpcion(){
@@ -67,6 +67,17 @@ function seleccionarOpcion(){
             $opcion=trim(fgets(STDIN));
         }while($opcion<0 || $opcion>8);
     return $opcion;
+}
+
+ 
+/**
+ * Una función que le pida al usuario ingresar una palabra de 5 letras y retorna la palabra
+ * @return INT 
+ */
+function pidePalabra(){
+    echo "Ingrese una palabra de 5 letras";
+    $palabra=trim(fgets(STDIN));
+    return $palabra;
 }
 
 /**************************************/
