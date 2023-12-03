@@ -36,16 +36,16 @@ function cargarColeccionPalabras()
  * @return array
  */
 function cargarPartidas(){
-    $coleccionPartidas[0] = ["palabraWordix "=> "QUESO" , "jugador" => "majo", "intentos"=> 0, "puntaje" => 0,];
-    $coleccionPartidas[1] = ["palabraWordix "=> "CASAS" , "jugador" => "rudolf", "intentos"=> 3, "puntaje" => 14];
-    $coleccionPartidas[2] = ["palabraWordix "=> "QUESO" , "jugador" => "pink2000", "intentos"=> 6, "puntaje" => 10];
-    $coleccionPartidas[3] = ["palabraWordix "=> "VERDE" , "jugador" => "sebas", "intentos"=> 0, "puntaje" => 0,];
-    $coleccionPartidas[4] = ["palabraWordix "=> "VARON" , "jugador" => "rodolfo", "intentos"=> 4, "puntaje" => 14];
-    $coleccionPartidas[5] = ["palabraWordix "=> "RATON" , "jugador" => "gustavo", "intentos"=> 2, "puntaje" => 10];
-    $coleccionPartidas[6] = ["palabraWordix "=> "HIELO" , "jugador" => "roberto", "intentos"=> 0, "puntaje" => 0,];
-    $coleccionPartidas[7] = ["palabraWordix "=> "PISOS" , "jugador" => "sebas", "intentos"=> 3, "puntaje" => 14];
-    $coleccionPartidas[8] = ["palabraWordix "=> "HIELO" , "jugador" => "nico", "intentos"=> 2, "puntaje" => 10];
-    $coleccionPartidas[9] = ["palabraWordix "=> "FERIA" , "jugador" => "jere", "intentos"=> 3, "puntaje" => 14];
+    $coleccionPartidas[0] = ["palabraWordix"=> "QUESO" , "jugador" => "majo", "intentos"=> 0, "puntaje" => 0,];
+    $coleccionPartidas[1] = ["palabraWordix"=> "CASAS" , "jugador" => "rudolf", "intentos"=> 3, "puntaje" => 14];
+    $coleccionPartidas[2] = ["palabraWordix"=> "QUESO" , "jugador" => "pink2000", "intentos"=> 6, "puntaje" => 10];
+    $coleccionPartidas[3] = ["palabraWordix"=> "VERDE" , "jugador" => "sebas", "intentos"=> 0, "puntaje" => 0,];
+    $coleccionPartidas[4] = ["palabraWordix"=> "VARON" , "jugador" => "rodolfo", "intentos"=> 4, "puntaje" => 14];
+    $coleccionPartidas[5] = ["palabraWordix"=> "RATON" , "jugador" => "gustavo", "intentos"=> 2, "puntaje" => 10];
+    $coleccionPartidas[6] = ["palabraWordix"=> "HIELO" , "jugador" => "roberto", "intentos"=> 0, "puntaje" => 0,];
+    $coleccionPartidas[7] = ["palabraWordix"=> "PISOS" , "jugador" => "sebas", "intentos"=> 3, "puntaje" => 14];
+    $coleccionPartidas[8] = ["palabraWordix"=> "HIELO" , "jugador" => "nico", "intentos"=> 2, "puntaje" => 10];
+    $coleccionPartidas[9] = ["palabraWordix"=> "FERIA" , "jugador" => "jere", "intentos"=> 3, "puntaje" => 14];
     return $coleccionPartidas;
 }
 
@@ -82,16 +82,47 @@ function pidePalabra(){
 
 //Una función que solicite al usuario un número entre un rango de valores. Si el número ingresado por el
 //usuario no es válido, la función se encarga de volver a pedirlo. La función retorna un número válido.
-function pideNumerro(){
-    echo "Ingrese un numero del 1 al 10 \n";
+/**
+ * Una función que le pida al usuario un numero de rango de valores y retorna el numero  
+ * @param INT $partidas
+ * @return INT 
+ */
+function pideNumero($coleccionPartidas){
+    $max=count($coleccionPartidas);
+    echo "Ingrese un numero del 1 al ".$max." \n";
     $numero=trim(fgets(STDIN));
-    while($numero<1 || $numero>10){
+    while($numero<1 || $numero>$max){
         echo "Error: Numero Invalido
-        Ingrese un numero del 1 al 10 \n";
+        Ingrese un numero del 1 al ".$max." \n";
         $numero=trim(fgets(STDIN));
     }
     return $numero; 
 }
+
+//Una función que dado un número de partida, muestre en pantalla los datos
+// de la partida como lo indica la sección EXPLICACIÓN 1
+/**
+ * Una función que dado un numero de partida muestra en pantalla los datos de la partida
+ * @return INT 
+ */
+function numeroPartida($num,$coleccionPartidas){
+    $palabra = $coleccionPartidas[$num-1]["palabraWordix"];
+    $jugador = $coleccionPartidas[$num-1]["jugador"];
+    $intentos = $coleccionPartidas[$num-1]["intentos"];
+    $puntaje = $coleccionPartidas[$num-1]["puntaje"];
+    echo "***********************************\n";
+    echo "Partida WORDIX ".$num.": palabra ".$palabra."\n";
+    echo "Jugador: ".$jugador."\n";
+    echo "Puntaje: ".$puntaje."puntos \n";
+    If($puntaje>0){
+        Echo "intentos: adivino la palabra en: ". $intentos. " Intentos \n";
+    }else{
+        Echo"intentos: no adivino la plabra \n";
+    }
+    echo "***********************************\n";
+}
+
+
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
@@ -105,17 +136,14 @@ function pideNumerro(){
 
 //Proceso:
 
-$partida = jugarWordix("MELON", strtolower("MaJo"));
+//$partida = jugarWordix("MELON", strtolower("MaJo"));
 //print_r($partida);
 //imprimirResultado($partida);
 
+$llamaCargarPartidas=cargarPartidas();
 
-
-/*
 do {
-    $opcion = ...;
-
-    
+    $opcion = seleccionarOpcion();
     switch ($opcion) {
         case 1: 
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 1
@@ -126,11 +154,27 @@ do {
 
             break;
         case 3: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+            $llamaPideNumero=pideNumero($llamaCargarPartidas);
+            $llamaFuncion=numeroPartida($llamaPideNumero,$llamaCargarPartidas);
+            echo $llamaFuncion;
 
             break;
         
-            //...
+        case 4:
+            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 4
+
+            break;
+        case 5:
+            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 4
+    
+            break;
+        case 6:
+            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 4
+        
+            break;
+        case 7:
+            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 4
+            
+            break;
     }
-} while ($opcion != X);
-*/
+} while ($opcion != 8);
