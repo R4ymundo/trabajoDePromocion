@@ -74,9 +74,17 @@ function seleccionarOpcion(){
  * Una función que le pida al usuario ingresar una palabra de 5 letras y retorna la palabra
  * @return INT 
  */
-function pidePalabra(){
-    echo "Ingrese una palabra de 5 letras \n";
-    $palabra=trim(fgets(STDIN));
+function agregarPalabra5Letras()
+{
+    //string $palabra
+    echo "Ingrese una palabra de 5 letras: ";
+    $palabra = trim(fgets(STDIN));
+    $palabra  = strtoupper($palabra);
+
+    while ((strlen($palabra) != 5) || !esPalabra($palabra)) {
+        echo "Debe ingresar una palabra de 5 letras: ";
+        $palabra = strtoupper(trim(fgets(STDIN)));
+    }
     return $palabra;
 }
 
@@ -122,7 +130,69 @@ function numeroPartida($num,$coleccionPartidas){
     echo "***********************************\n";
 }
 
+//Una función agregarPalabra cuya entrada sea la colección de palabras y una palabra, y la función retorna
+//la colección modificada al agregarse la nueva palabra. 
+/**
+ * Una función que agrega una palabra de 5 letras a la coleccion de palabras
+ * @param ARRAY $coleccionPalabras
+ * @param STRING $unaPalabra
+ * @return INT 
+ */
+function agregarPalabra ($unaPalabra, $coleccionPalabras){
+    $ind=count($coleccionPalabras);
+    $coleccionPalabras[$ind] = strtoupper($unaPalabra);
+    return $coleccionPalabras;
+}
+/**
+ * Una función que busca si ya existe la palabra en la coleccion de palabras
+ * @param ARRAY $coleccionPalabras
+ * @param STRING $unaPalabra
+ * @return INT 
+ */
+function palabraEncontrar($coleccionPalabras,$unaPalabra){
+    $i=0;
+    $unaPalabra=false;
+    $num=count($coleccionPalabras);
+    
+    While($i>$num && $unaPalabra==false){
+        if ($coleccionPalabras [$i] == $unaPalabra){
+                $unaPalabra= true;
+            }   
+      $i++;
+    }
+    
+    return $unaPalabra;
+}
 
+//Una función que dada una colección de partidas y el nombre de un jugador, retorne el índice de la primer
+//partida ganada por dicho jugador. Si el jugador ganó ninguna partida, la función debe retornar el valor -1.
+//(debe utilizar las instrucciones vistas en la materia, no utilizar funciones predefinidas de php).
+/**
+ * Una función que dado un numero de partida muestra en pantalla los datos de la partida
+ * @return INT 
+ */
+
+//Una función que dada la colección de partidas y el nombre de un jugador, retorne el resumen del jugador
+//utilizando la estructura c) de la sección EXPLICACIÓN 2.
+/**
+ * Una función que dado un numero de partida muestra en pantalla los datos de la partida
+ * @return INT 
+ */
+
+ //Una función solicitarJugador sin parámetros formales que solicite al usuario el nombre de un jugador y
+//retorne el nombre en minúsculas. La función debe asegurar que el nombre del jugador comience con una
+//letra. (Utilice funciones predefinidas de string).
+/**
+ * Una función que dado un numero de partida muestra en pantalla los datos de la partida
+ * @return INT 
+ */
+
+//Una función sin retorno que, dada una colección de partidas, muestre la colección de partidas ordenada
+//por el nombre del jugador y por la palabra. Utilice la función predefinida uasort de php y print_r
+/**
+ * Una función que dado un numero de partida muestra en pantalla los datos de la partida
+ * @return INT 
+ */
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
@@ -135,12 +205,24 @@ function numeroPartida($num,$coleccionPartidas){
 
 
 //Proceso:
+ /**Un Programa Principal que deberá seguir los siguientes pasos:
+a. Precargar las estructuras de partidas.
+b. Precargar la estructura de palabras.
+c. Repetir el menú de opciones mientras la opción seleccionada no sea la opción Salir.
+d. Cuando el usuario selecciona la opción del menú, debe invocar a la/s función/es necesarias.
+Salvo algunas excepciones, debe contar con funciones con parámetros formales y retorno.
+Asesorarse con la Cátedra para implementar las funciones correctamente de modo que los
+resultados de las funciones puedan ser reusados.
+e. Investigar la instrucción switch en el manual de PHP. ¿a qué tipo de estructura de control vista
+en teoría corresponde? Escriba un comentario sobre la instrucción en el código fuente.
+*/
 
 //$partida = jugarWordix("MELON", strtolower("MaJo"));
 //print_r($partida);
 //imprimirResultado($partida);
 
 $llamaCargarPartidas=cargarPartidas();
+$llamaColeccionPalabras=cargarColeccionPalabras();
 
 do {
     $opcion = seleccionarOpcion();
@@ -151,12 +233,11 @@ do {
             break;
         case 2: 
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
-
             break;
         case 3: 
             $llamaPideNumero=pideNumero($llamaCargarPartidas);
-            $llamaFuncion=numeroPartida($llamaPideNumero,$llamaCargarPartidas);
-            echo $llamaFuncion;
+            $llamaNumeroPartida=numeroPartida($llamaPideNumero,$llamaCargarPartidas);
+            echo $llamaNumeroPartida;
 
             break;
         
@@ -165,15 +246,22 @@ do {
 
             break;
         case 5:
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 4
+            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 5
     
             break;
         case 6:
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 4
+            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 6
         
             break;
         case 7:
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 4
+            $llamaleerPalabra5Letras=agregarPalabra5Letras();
+            $llamaPalabraEncontrar=palabraEncontrar($llamaColeccionPalabras,$llamaleerPalabra5Letras);
+            If($llamaPalabraEncontrar==true){
+                echo "La palabra ya existe \n"; 
+            }else{ 
+                  $llamaColeccionPalabras=agregarPalabra($llamaleerPalabra5Letras,$llamaColeccionPalabras);
+                  print_r($llamaColeccionPalabras);
+            }
             
             break;
     }
