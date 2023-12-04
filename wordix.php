@@ -345,7 +345,7 @@ function esIntentoGanado($estructuraPalabraIntento)
  */
 function obtenerPuntajeWordix($palabra, $intento)  
 {
-    //INT $puntaje, $i
+    //INT $puntaje, $i, $longitud
     $puntaje=0;
     $longitud=strlen($palabra);
 

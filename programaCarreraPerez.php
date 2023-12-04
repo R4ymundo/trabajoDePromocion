@@ -38,6 +38,7 @@ function cargarColeccionPalabras()
  * @return array
  */
 function cargarPartidas(){
+    //ARRAY $coleccionPartidas
     $coleccionPartidas[0] = ["palabraWordix"=> "QUESO" , "jugador" => "majo", "intentos"=> 0, "puntaje" => 0,];
     $coleccionPartidas[1] = ["palabraWordix"=> "CASAS" , "jugador" => "rudolf", "intentos"=> 3, "puntaje" => 14];
     $coleccionPartidas[2] = ["palabraWordix"=> "QUESO" , "jugador" => "pink2000", "intentos"=> 6, "puntaje" => 10];
@@ -114,9 +115,13 @@ function pideNumero($coleccionPartidas){
 // de la partida como lo indica la sección EXPLICACIÓN 1
 /**
  * Una función que dado un numero de partida muestra en pantalla los datos de la partida
+ * @param INT $num
+ * @param ARRAY $coleccionPartidas
  * @return INT 
  */
 function numeroPartida($num,$coleccionPartidas){
+    //STRING $palabra, $jugador
+    //INT $intentos, puntajes
     $palabra = $coleccionPartidas[$num-1]["palabraWordix"];
     $jugador = $coleccionPartidas[$num-1]["jugador"];
     $intentos = $coleccionPartidas[$num-1]["intentos"];
@@ -142,6 +147,7 @@ function numeroPartida($num,$coleccionPartidas){
  * @return INT 
  */
 function agregarPalabra ($unaPalabra, $coleccionPalabras){
+    //INT $ind
     $ind=count($coleccionPalabras);
     $coleccionPalabras[$ind] = strtoupper($unaPalabra);
     return $coleccionPalabras;
@@ -153,17 +159,18 @@ function agregarPalabra ($unaPalabra, $coleccionPalabras){
  * @return INT 
  */
 function palabraEncontrar($coleccionPalabras,$unaPalabra){
+    //INT $i, $num
     $i=0;
     $unaPalabra=false;
     $num=count($coleccionPalabras);
-    
+
     While($i>$num && $unaPalabra==false){
         if ($coleccionPalabras [$i] == $unaPalabra){
                 $unaPalabra= true;
             }   
       $i++;
     }
-    
+
     return $unaPalabra;
 }
 
