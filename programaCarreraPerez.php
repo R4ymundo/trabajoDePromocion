@@ -8,19 +8,21 @@ include_once("wordix.php");
 /**************************************/
 
 /* Apellido, Nombre. Legajo. Carrera. mail. Usuario Github */
-/* ****COMPLETAR***** */
+//Carrera Bruno Abel. Legajo: FAI-4912. Carrera:TUDW. mail: brunofain2023@gmail.com. Usuario Github: R4ymundo
+//Perez Aaron. Legajo: FAI-4977. Carrera:TUDW. mail: . Usuario Github: Sanluki04
 
 
 /**************************************/
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
 
-/**
- * Obtiene una colección de palabras
+/** FUNCION COLECCION DE PALABRAS
+ * Obtiene una colección de palabras de cinco letras en mayúsculas
  * @return array
  */
 function cargarColeccionPalabras()
 {
+    //ARRAY $coleccionPalabras
     $coleccionPalabras = [
         "MUJER", "QUESO", "FUEGO", "CASAS", "RASGO",
         "GATOS", "GOTAS", "HUEVO", "TINTO", "NAVES",
@@ -31,7 +33,7 @@ function cargarColeccionPalabras()
     return ($coleccionPalabras);
 }
 
-/**
+/** FUNCION CARGAR PARTIDAS
  * Obtiene una colección de partidas jugadas
  * @return array
  */
@@ -49,11 +51,12 @@ function cargarPartidas(){
     return $coleccionPartidas;
 }
 
-/**
- * menu de opciones
+/**FUNCION OPCIONES
+ * Funcion que muestra opciones al usuario y retorna el valor de la opción elegida
  * @return INT 
  */
 function seleccionarOpcion(){
+    //INT $opcion
         do{
             echo "Menú de opciones: 
             1) Jugar al wordix con una palabra elegida 
