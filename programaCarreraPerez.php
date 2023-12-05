@@ -129,13 +129,40 @@ function numeroPartida($num,$coleccionPartidas){
     echo "***********************************\n";
     echo "Partida WORDIX ".$num.": palabra ".$palabra."\n";
     echo "Jugador: ".$jugador."\n";
-    echo "Puntaje: ".$puntaje."puntos \n";
+    echo "Puntaje: ".$puntaje." puntos \n";
     If($puntaje>0){
         Echo "intentos: adivino la palabra en: ". $intentos. " Intentos \n";
     }else{
-        Echo"intentos: no adivino la plabra \n";
+        Echo"intentos: no adivino la palabra \n";
     }
     echo "***********************************\n";
+}
+/**
+ * Una función que dado un numero de partida muestra en pantalla los datos de la partida
+ * @param INT $num
+ * @param ARRAY $coleccionPartidas
+ * @return INT 
+ */
+function jugadorPartida($num,$coleccionPartidas,$nombre){
+    //STRING $palabra, $jugador
+    //INT $intentos, puntajes
+    if($num = -1){
+        echo $nombre." no gano ninguna partida \n";
+    }else{
+        $palabra = $coleccionPartidas[$num]["palabraWordix"];
+        $intentos = $coleccionPartidas[$num]["intentos"];
+        $puntaje = $coleccionPartidas[$num]["puntaje"];
+        echo "***********************************\n";
+        echo "Partida WORDIX ".$num.": palabra ".$palabra."\n";
+        echo "Jugador: ".$nombre."\n";
+        echo "Puntaje: ".$puntaje." puntos \n";
+        If($puntaje>0){
+            Echo "intentos: adivino la palabra en: ". $intentos. " Intentos \n";
+        }else{
+            Echo"intentos: no adivino la palabra \n";
+        }
+        echo "***********************************\n";
+    }
 }
 
 //Una función agregarPalabra cuya entrada sea la colección de palabras y una palabra, y la función retorna
@@ -178,32 +205,134 @@ function palabraEncontrar($coleccionPalabras,$unaPalabra){
 //partida ganada por dicho jugador. Si el jugador ganó ninguna partida, la función debe retornar el valor -1.
 //(debe utilizar las instrucciones vistas en la materia, no utilizar funciones predefinidas de php).
 /**
- * Una función que dado un numero de partida muestra en pantalla los datos de la partida
- * @return INT 
+ * Una función que busca la primera partida ganada
+ * @param ARRAY $coleccionPartidas
+ * @param STRING $nombreJugador
+ * @return INT
  */
-
+function primeraGanada($coleccionPartidas, $nombreJugador) {
+    foreach ($coleccionPartidas as $indice => $partida) {
+        if ($partida["jugador"] === $nombreJugador && $partida["puntaje"]>0) {
+            return $indice;
+        }
+    }
+    return -1;
+}
 //Una función que dada la colección de partidas y el nombre de un jugador, retorne el resumen del jugador
 //utilizando la estructura c) de la sección EXPLICACIÓN 2.
 /**
- * Una función que dado un numero de partida muestra en pantalla los datos de la partida
- * @return INT 
+ * Una función que almacena y crea arreglo del Resumen de un Jugador
+ * @param ARRAY $coleccionPartidas
+ * @param STRING $nombreJugador
+ * @return ARRAY $resumen  
  */
-
+function ColeccionResumen($coleccionPartidas, $nombreJugador) {
+    // INT $cPartidas,$cVictorias,$sumaPuntaje,$cInt1,$cInt2,$cInt3,$cInt4,$cInt4,$cInt5,$cInt6,$porcVictorias
+    $cPartidas=0;
+    $cVictorias=0;
+    $sumaPuntaje=0;
+    $cInt1=0;
+    $cInt2=0;
+    $cInt3=0;
+    $cInt4=0;
+    $cInt5=0;
+    $cInt6=0;
+    foreach ($coleccionPartidas as $partida) {
+        if ($partida['jugador'] === $nombreJugador) {
+            $cPartidas = $cPartidas + 1;
+            if($partida['puntaje']>0){
+                $cVictorias=$cVictorias+1;
+                $sumaPuntaje=$sumaPuntaje+$partida['puntaje'];
+            }
+            if($partida['intentos']==1){
+                $cInt1=$cInt1+1;
+            }elseif($partida['intentos']==2){
+                $cInt2=$cInt2+1;
+            }elseif($partida['intentos']==3){
+                $cInt3=$cInt3+1;
+            }elseif($partida['intentos']==4){
+                $cInt4=$cInt4+1;
+            }elseif($partida['intentos']==5){
+                $cInt5=$cInt5+1;
+            }elseif($partida['intentos']==6){
+                $cInt6=$cInt6+1;
+            }
+        }
+    }
+    if($cVictorias>0){
+        $porcVictorias=$cVictorias*100/$cPartidas;
+    }else{
+        $porcVictorias=0;
+    }
+    $resumen = [
+        'jugador' => $nombreJugador,
+        'partidas' => $cPartidas,
+        'puntaje' => $sumaPuntaje,
+        'victorias' => $cVictorias,
+        'porcentaje' => $porcVictorias,
+        'intento1' => $cInt1,
+        'intento2' => $cInt2,
+        'intento3' => $cInt3,
+        'intento4' => $cInt4,
+        'intento5' => $cInt5,
+        'intento6' => $cInt6,
+    ];
+    return $resumen;
+}
+/**
+ * una funcion para mostrar el resumen de un jugador
+ * @param array $resumen
+ */
+function formatoResumen($resumen){
+    echo "***********************************\n";
+    echo "jugador: ". $resumen['jugador']. "\n";
+    echo "partidas: ". $resumen['partidas']. "\n";
+    echo "puntaje total: ".$resumen['puntaje']. "\n";
+    echo "victorias: ".$resumen['victorias']."\n";
+    echo "el porcentaje de victorias es: ".$resumen['porcentaje']. "%\n";
+    echo "adivinadas:\n";
+            echo "intento 1: " .$resumen['intento1']. "\n";
+            echo "intento 2: ".$resumen['intento2']. "\n";
+            echo "intento 3: " .$resumen['intento3']. "\n";
+            echo "intento 4: " .$resumen['intento4']. "\n";
+            echo "intento 5: " .$resumen['intento5']. "\n";
+            echo "intento 6: " .$resumen['intento6']. "\n";
+    echo "***********************************\n";
+}
  //Una función solicitarJugador sin parámetros formales que solicite al usuario el nombre de un jugador y
 //retorne el nombre en minúsculas. La función debe asegurar que el nombre del jugador comience con una
 //letra. (Utilice funciones predefinidas de string).
 /**
- * Una función que dado un numero de partida muestra en pantalla los datos de la partida
- * @return INT 
+ * Una función que pide un nombre y lo retorna en minuscula
+ * @return STRING $nombreJugador 
  */
-
+function solicitarJugador(){
+    echo "Ingrese Nombre del Jugador\n";
+    $nombreJugador=strtolower(trim(fgets(STDIN)));//strtolower lo pasa a minusculas
+    while(strlen($nombreJugador)<1){//strlen obtiene la longitud de un string
+        echo "Error: no ingreso caracteres\n";
+        echo "Ingrese Nombre del Jugador\n";
+        $nombreJugador=strtolower(trim(fgets(STDIN)));
+    }
+    return $nombreJugador;
+}
 //Una función sin retorno que, dada una colección de partidas, muestre la colección de partidas ordenada
 //por el nombre del jugador y por la palabra. Utilice la función predefinida uasort de php y print_r
 /**
- * Una función que dado un numero de partida muestra en pantalla los datos de la partida
- * @return INT 
+ * Una función que ordena por nombre del jugador y luego por palabra
+ * @param ARRAY $coleccionPartidas 
  */
-
+function partidasOrdenadas($coleccionPartidas) {
+    uasort($coleccionPartidas, function($palabraA, $palabraB) {
+        $nombreComparacion = strcmp($palabraA['jugador'], $palabraB['jugador']);//strcmp compara los nombres de jugadores y dice que si la primera cadena es menor que, igual a, o mayor que la segunda, entregando num negativo,0 o num positivo.
+        if ($nombreComparacion !== 0) {
+            return $nombreComparacion;
+        } else {
+            return strcmp($palabraA['palabraWordix'], $palabraB['palabraWordix']);//strcmp compara las palabras y dice que si la primera cadena es menor que, igual a, o mayor que la segunda, entregando num negativo,0 o num positivo.
+        }
+    });
+    print_r($coleccionPartidas);
+}
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
@@ -230,8 +359,9 @@ en teoría corresponde? Escriba un comentario sobre la instrucción en el códig
 //$partida = jugarWordix("MELON", strtolower("MaJo"));
 //print_r($partida);
 //imprimirResultado($partida);
-
+//a
 $llamaCargarPartidas=cargarPartidas();
+//b
 $llamaColeccionPalabras=cargarColeccionPalabras();
 
 do {
@@ -252,16 +382,17 @@ do {
             break;
         
         case 4:
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 4
-
+            $llamaNombre=solicitarJugador();
+            $llamaPrimerGanada=primeraGanada($llamaCargarPartidas,$llamaNombre);
+            $llamaNumeroPartida= jugadorPartida($llamaPrimerGanada,$llamaCargarPartidas,$llamaNombre);
             break;
         case 5:
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 5
-    
+            $llamaNombre=solicitarJugador();
+            $llamaResumen=ColeccionResumen($llamaCargarPartidas,$llamaNombre);
+            $llamarFormato=formatoResumen($llamaResumen);
             break;
         case 6:
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 6
-        
+            $llamarPartidasOrdenadas=partidasOrdenadas($llamaCargarPartidas);
             break;
         case 7:
             $llamaleerPalabra5Letras=agregarPalabra5Letras();
