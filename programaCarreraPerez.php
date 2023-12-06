@@ -178,8 +178,8 @@ function agregarPalabra ($unaPalabra, $coleccionPalabras){
 /**
  * Una función que busca si ya existe la palabra en la coleccion de palabras
  * @param ARRAY $coleccionPalabras
- * @param STRING $unaPalabra
- * @return INT 
+ * @param BOOLEAN $unaPalabra
+ * @return BOOLEAN
  */
 function palabraEncontrar($coleccionPalabras,$unaPalabra){
     //INT $i, $num
@@ -381,6 +381,11 @@ function jugarPalabra($coleccionPalabras){
 /**************************************/
 
 //Declaración de variables:
+//ARRAY $llamaCargarPartidas, $llamaColeccionPalabras, $partida, $llamaResumen, $llamarFormato
+//INT $opcion, $llamaJugarPalabra, $llamaPideNumero, $llamaNumeroPartida, $llamaPrimerGanada, $llamaleerPalabra5Letras
+//STRING $llamaNombre, $aleatoriaPalabra
+//BOOLEAN $seJugo, $llamaPalabraEncontrar
+
 
 
 //Inicialización de variables:

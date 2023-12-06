@@ -5,7 +5,7 @@ Introduccion a la Programacion -
 Tecnicatura en Desarrollo Web
 
 
-Facultad en Informatica
+Facultad de Informatica
 
 
 Universidad Nacional del Comahue
