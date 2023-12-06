@@ -333,6 +333,33 @@ function partidasOrdenadas($coleccionPartidas) {
     });
     print_r($coleccionPartidas);
 }
+
+/**FUNCION PALABRA ELEGIDA
+ * Verifica si el jugador ya jugó con una palabra wordix
+ * @param ARRAY $coleccionPartidas
+ * @param ARRAY $coleccionPalabras
+ * @param INT $indicePalabras
+ * @param STRING $llamaNombre
+ * @return BOOLEAN
+ */
+
+ function PalabraElegida($coleccionPartidas, $coleccionPalabras, $indicePalabras, $llamaNombre) {
+    // INT $i, $n 
+    //BOOLEAN $jugada
+    $i=0;
+    $n=count($coleccionPartidas)-1;
+    $jugada= false;
+    while ($i<=$n && !$jugada) {
+        if ($coleccionPartidas[$i]["palabraWordix"]==$coleccionPalabras[$indicePalabras]) {
+            if ($coleccionPartidas[$i]["jugador"]==$llamaNombre) {
+                $jugada= true;
+            }
+        }
+        $i++;
+    }
+    return $jugada;
+}
+
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
@@ -368,13 +395,30 @@ do {
     $opcion = seleccionarOpcion();
     switch ($opcion) {
         case 1: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 1
+            //Jugar al wordix con una palabra elegida
+            $llamaNombre=solicitarJugador();
+
+            do{
+                echo"El juego posee ". count($llamaColeccionPalabras)." palabras para poder adivinar\n";
+                echo"Elija un numero entre 1 y ". count($llamaColeccionPalabras)." para comenzar a jugar\n";
+                $indicePalabras=solicitarNumeroEntre(0, count($llamaColeccionPalabras)-1);
+                $seJugo=palabraElegida($llamaCargarPartidas, $llamaColeccionPalabras, $indicePalabras, $llamaNombre);
+
+                if ($seJugo) {
+                    echo "Esta palabra ya ha sido utilizada para jugar\n";
+                    echo "Por favor, vuelve a elegir otra palabra\n";
+                }
+            } while($seJugo);
+            
+            $coleccionPartidas[]= jugarWordix($coleccionPalabras[$indicePalabras], $llamaNombre);
 
             break;
+
         case 2: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
+            //Jugar al wordix con una palabra aleatoria
             break;
         case 3: 
+            //Mostrar una partida
             $llamaPideNumero=pideNumero($llamaCargarPartidas);
             $llamaNumeroPartida=numeroPartida($llamaPideNumero,$llamaCargarPartidas);
             echo $llamaNumeroPartida;
@@ -382,19 +426,23 @@ do {
             break;
         
         case 4:
+            //Mostrar la primer partida ganadora
             $llamaNombre=solicitarJugador();
             $llamaPrimerGanada=primeraGanada($llamaCargarPartidas,$llamaNombre);
             $llamaNumeroPartida= jugadorPartida($llamaPrimerGanada,$llamaCargarPartidas,$llamaNombre);
             break;
         case 5:
+            //Mostrar estadísticas jugador
             $llamaNombre=solicitarJugador();
             $llamaResumen=ColeccionResumen($llamaCargarPartidas,$llamaNombre);
             $llamarFormato=formatoResumen($llamaResumen);
             break;
         case 6:
+            //Mostrar listado de partidas ordenadas por jugador y por palabra
             $llamarPartidasOrdenadas=partidasOrdenadas($llamaCargarPartidas);
             break;
         case 7:
+            //Agregar una palabra de 5 letras a Wordix
             $llamaleerPalabra5Letras=agregarPalabra5Letras();
             $llamaPalabraEncontrar=palabraEncontrar($llamaColeccionPalabras,$llamaleerPalabra5Letras);
             If($llamaPalabraEncontrar==true){
