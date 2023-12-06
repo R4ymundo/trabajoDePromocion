@@ -381,9 +381,9 @@ function jugarPalabra($coleccionPalabras){
 /**************************************/
 
 //Declaración de variables:
-//ARRAY $llamaCargarPartidas, $llamaColeccionPalabras, $partida, $llamaResumen, $llamarFormato
+//ARRAY $llamaCargarPartidas, $llamaColeccionPalabras, $partida, $llamaResumen
 //INT $opcion, $llamaJugarPalabra, $llamaPideNumero, $llamaNumeroPartida, $llamaPrimerGanada, $llamaleerPalabra5Letras
-//STRING $llamaNombre, $aleatoriaPalabra
+//STRING $llamaNombre, $aleatoriaPalabra, $llamarFormato
 //BOOLEAN $seJugo, $llamaPalabraEncontrar
 
 
