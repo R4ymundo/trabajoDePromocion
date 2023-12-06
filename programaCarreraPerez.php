@@ -9,7 +9,7 @@ include_once("wordix.php");
 
 /* Apellido, Nombre. Legajo. Carrera. mail. Usuario Github */
 //Carrera Bruno Abel. Legajo: FAI-4912. Carrera:TUDW. mail: brunofain2023@gmail.com. Usuario Github: R4ymundo
-//Perez Aaron. Legajo: FAI-4977. Carrera:TUDW. mail: . Usuario Github: Sanluki04
+//Perez Aaron. Legajo: FAI-4977. Carrera:TUDW. mail: santiaaronp04@gmail.com. Usuario Github: Sanluki04
 
 
 /**************************************/
