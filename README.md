@@ -8,7 +8,11 @@ Universidad Nacional del Comahue
 
 # Integrantes del Grupo 14
 FAI-4977 Perez Santiago Aaron GitHub: Sanluki04
+
+
 FAI-4912 Carrera Bruno Abel Github: R4ymundo
 # Profesores
 Luis Reynoso
+
+
 Cristian Torres
